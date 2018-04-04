@@ -21,12 +21,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                String url = "https://elisters2000limited.freshdesk.com/support/home";
-
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://elisters2000limited.freshdesk.com/support/home"));
+                Intent chooser = Intent.createChooser(sendIntent, "Choose Your Browser");
+                if (sendIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(chooser);
+                }
             }
         });
     }
 }
+
